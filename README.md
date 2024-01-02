@@ -2,6 +2,8 @@
 
 Machine learning based on DeepJetCore 
 
+![](images/DeepCore.png)
+
 ## Installation and environment
 
 We are running within CMSSW (>10_2_X should have the keras, tensorflow, etc. libraries needed).
@@ -37,37 +39,5 @@ The arguments are the input directories, the name of the tree and a postfix to a
 The first tree is assumed to be the main one, the subsequent are helper friend trees. The {0} can be used to substitute
 the original name of the tree found in the first directory.
 
-## Recoil regression
-
-Use the runRecoilScaleRegression.sh found under scripts. 
-Running the script with -h will show all the available options.
-A simple example is given below (notice it uses only part of the total number of simulated events)
-```
-sh scripts/runRecoilRegression.sh -r prepare,train,predict -t WJetsToLNu_part -c isW==0 -m 0:lne1 \
-   -i /eos/cms/store/cmst3/user/psilva/Wmass/Recoil_regress-data 
-```
-If a model exists and you want to extend the predicition to other files than the ones used in the training
-you can use the same script but running in predict mode
-```
-sh scripts/runRecoilRegression.sh -r predict -m 0 -i /eos/cms/store/cmst3/user/psilva/Wmass/RecoilTest_regress-v2/Chunks -p regress-results/train
-```
-Under the test directory you can also find a condor submission script to send out with HTCondor several trainings in parallel.
-The usual `condor_sub condor_RecoilRegression.sub` can be used for the purpose.
-
-## Diagnostics
-
-Some scripts to do basic plotting are available.
-The inputs can be a directory with results or a CSV list of directories with results.
-To plot the loss, mse, and all the metrics which were registered use
-```
-python scripts/makeTrainValidationPlots.py title:regression_results,title:regression_results,...
-```
-To make ideogram plots (using event-by-event PDF from the regression).
-As it usually takes time -n tells the number of events to use (-1=all)
-```
-python scripts/makeIdeogramPlots.py -i regression_results/train -o ideograms.root  -n -1
-```
-
-![](images/DeepCore.png)
 
 ![](images/eff.png)
