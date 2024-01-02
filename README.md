@@ -67,3 +67,7 @@ As it usually takes time -n tells the number of events to use (-1=all)
 ```
 python scripts/makeIdeogramPlots.py -i regression_results/train -o ideograms.root  -n -1
 ```
+
+![](images/DeepCore.png)
+
+![](images/eff.png)
