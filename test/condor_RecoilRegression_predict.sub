@@ -1,0 +1,17 @@
+executable   = /afs/cern.ch/user/p/psilva/work/Wmass/train/CMSSW_10_2_0_pre5/src/DeepML/scripts/runRecoilRegression.sh
+arguments    = -m $(model) -o $(outdir) -i $(indir) -t $(tag) -r predict -d $(data) -p $(h5)  -f
+output       = job$(ProcId).out
+error        = job$(ProcId).err
+log          = job$(ProcId).log
++JobFlavour  = "tomorrow"
+request_cpus = 4
+#uncomment to run on SLC7
+#requirements = (OpSysAndVer =?= "CentOS7")
+
+model  = 310:lne1,e2
+outdir = /eos/cms/store/cmst3/user/psilva/Wmass/RecoilTest_regress-models/best/
+indir  = /eos/cms/store/cmst3/user/psilva/Wmass/RecoilTest_regress-v2/Chunks
+data   = /eos/cms/store/cmst3/user/psilva/Wmass/RecoilTest_regress-models/model310_lne1_e2/prepare/data/
+h5     = /eos/cms/store/cmst3/user/psilva/Wmass/RecoilTest_regress-models/model310_lne1_e2/train/model/
+
+queue tag matching ($(indir)/*.root)

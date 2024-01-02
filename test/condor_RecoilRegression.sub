@@ -1,0 +1,41 @@
+executable = /afs/cern.ch/user/p/psilva/work/Wmass/train/CMSSW_10_2_0_pre5/src/DeepML/scripts/runRecoilRegression.sh
+arguments  = -m $(model) -o $(outdir) -i $(indir)  -t WJetsToLNu_part -r prepare,train,predict -c isW==0
+output     = job$(ProcId).out
+error      = job$(ProcId).err
+log        = job$(ProcId).log
++JobFlavour = "tomorrow"
+request_cpus = 4
+#uncomment to run on SLC7
+#requirements = (OpSysAndVer =?= "CentOS7")
+
+indir  = /eos/cms/store/cmst3/user/psilva/Wmass/Recoil_regress-data
+outdir = /eos/cms/store/cmst3/user/psilva/Wmass/RecoilTest_regress-models/
+queue model from (
+      0:lne1,e2      
+      100:lne1,e2
+      101:lne1,e2
+      102:lne1,e2
+      103:lne1,e2
+      104:lne1,e2
+      300:lne1,e2
+      301:lne1,e2
+      302:lne1,e2
+      303:lne1,e2
+      304:lne1,e2
+      305:lne1,e2
+      306:lne1,e2
+      307:lne1,e2
+      308:lne1,e2
+      309:lne1,e2
+      310:lne1,e2
+      311:lne1,e2
+      312:lne1,e2
+      313:lne1,e2
+      314:lne1,e2
+      315:lne1,e2
+      316:lne1,e2
+      317:lne1,e2
+      318:lne1,e2
+      319:lne1,e2
+      320:lne1,e2
+)
