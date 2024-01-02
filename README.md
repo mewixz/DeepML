@@ -43,7 +43,3 @@ the original name of the tree found in the first directory.
 
 
 ![](images/eff.png)
-
-
-The framework is designed primarily as a tool to streamline the process to employ machine learning for multi-jet classification. As features were added to deal with the increasing computational complexity espoused by distributed systems and large-scale datasets, it gravitated towards a broader set of use-cases.
-
