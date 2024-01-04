@@ -42,4 +42,7 @@ The first tree is assumed to be the main one, the subsequent are helper friend t
 the original name of the tree found in the first directory.
 
 
+![](test/model.pdf)
+
+
 ![](images/eff.png)
