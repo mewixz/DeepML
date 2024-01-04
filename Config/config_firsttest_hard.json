@@ -1,0 +1,185 @@
+{
+
+
+	"data_configuration" : { 
+		
+		"input_dir": "/media/mbelfkir/diskD/Array/", 
+		"dsid" : [0, 345058, 361020, 361108, 410471],
+		"output_dir": "/home/mbelfkir/TriggerML/Output/FullGranularity_FinerFilters_LearnMETCellRatio_Stg2/",
+		
+		"Z_names": ["Number", "Weight", "LiveTime", "Density", "DensitySigma", "Area", "isGoodLB", "distFrontBunchTrain", "mu", "L1_XE30", "L1_XE300", "L1_XE35", "L1_XE40", "L1_XE45", "L1_XE50", "L1_XE55", "L1_XE60", "L1_J100", "L1_J15", "L1_J20", "L1_J40", "L1_J400", "L1_J50", "cell_ex", "cell_ey", "cell_et", "mht_ex", "mht_ey", "mht_et", "topocl_PUC_ex", "topocl_PUC_ey", "topocl_PUC_et", "cell_PUC_ex", "cell_PUC_ey", "cell_PUC_et", "scell_ex", "scell_ey", "scell_et", "Truth_MET_NonInt_ex", "Truth_MET_NonInt_ey", "Truth_MET_NonInt_et", "Truth_MET_NonMuons_ex", "Truth_MET_NonMuons_ey", "Truth_MET_NonMuons_et"]
+	},
+	
+	"training_configuration" : {
+	
+		"debug"          : false,
+		"strategy"       : 2,
+		"epochs"         : 10,
+		"train_on"       : 345058,
+		"batch_size"     : 16, 
+		"loss"           : "huber",
+		"metric"         : "logcosh",
+		"optimizer"      : "adam",
+		"learning_rate"  : 1e-3,
+		"processFunction": "processSuperCells",
+		"L1_Trigger"     : "None",
+		"learn_ratio_to" : "cell_met",
+		"InputVars": ["Z", "Y", "Lr0", "Lr1", "Lr2", "Lr3", "Lr4", "Lr5", "Lr6_R0", "Lr6_R1", "Lr7_R0", "Lr7_R1", "Lr8_R0", "Lr8_R1", "Lr21", "Lr22", "Lr23"]
+		
+	},
+	
+	"array_configuration" : {
+	
+		"scell_met"   : -7,
+		"pile_up"     : -36,
+		"l1_xe30"     : -35,
+		"l1_xe50"     : -30,
+		"l1_xe60"     : -28,
+		"cell_met"    : -19,
+		"mht_met"     : -16,
+		"topo_puc_met": -13,
+		"cell_puc_met": -10,
+		"scell_xy"    : [-9, -8],
+		"cell_xy"     : [-21, -20],
+		"mht_xy"      : [-18, -17],
+		"topo_puc_xy" : [-15, -14],
+		"cell_puc_xy" : [-12, -11]
+	},
+	
+	"model_configuration" : {
+	
+		"model_name"   : "test",
+		
+		"layers_name"  : ["Lr0", "Lr1", "Lr2", "Lr3", "Lr4", "Lr5", "Lr6_R0", "Lr6_R1", "Lr7_R0", "Lr7_R1", "Lr8_R0", "Lr8_R1", "Lr21", "Lr22", "Lr23"],
+		
+		
+		"layers_shape" : {"Lr0": [64, 30, 1],
+				 "Lr1": [64, 118, 1],
+				 "Lr2": [64, 114, 1],
+				 "Lr3": [64, 28, 1],
+				 "Lr4":[64, 6, 1],
+				 "Lr5":[64, 84, 1],
+				 "Lr6_R0":[64, 88, 1],
+				 "Lr6_R1": [32, 8, 1],
+				 "Lr7_R0":[64, 20, 1],
+				 "Lr7_R1":[32, 8, 1],
+				 "Lr8_R0":[64, 20, 1],
+				 "Lr8_R1":[32, 8, 1],
+				 "Lr21":[16, 24, 1],
+				 "Lr22":[16, 16, 1],
+				 "Lr23":[16, 8, 1] 
+		},
+		
+		"n_outputs" : 1,
+		
+		"Conv_layers" : {"Lr0": [{"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"}, 
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [2,2], "activation": "selu", "initializer": "lecun_normal"} ], 
+			
+				"Lr1": [{"neurons":  64,   "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"}, 
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [2,2], "activation": "selu", "initializer": "lecun_normal"} ], 
+					
+				"Lr2": [{"neurons":  64,   "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"}, 
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [2,2], "activation": "selu", "initializer": "lecun_normal"} ], 
+					
+				"Lr3": [{"neurons":  64,   "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"}, 
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [2,1], "activation": "selu", "initializer": "lecun_normal"} ], 
+					 
+				"Lr4": [{"neurons":  64,   "kernel": [3,2], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,2], "activation": "selu", "initializer": "lecun_normal"}, 
+					  {"neurons":  64, "kernel": [3,2], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [2,2], "activation": "selu", "initializer": "lecun_normal"} ], 
+					
+				"Lr5": [{"neurons":  64,   "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"}, 
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [2,1], "activation": "selu", "initializer": "lecun_normal"} ], 
+					
+				"Lr6_R0": [{"neurons":  64,"kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"}, 
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [2,2], "activation": "selu", "initializer": "lecun_normal"} ], 
+					
+				"Lr6_R1": [{"neurons":  64,"kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"} ], 
+					
+				"Lr7_R0": [{"neurons":  64,"kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"}, 
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [2,1], "activation": "selu", "initializer": "lecun_normal"} ], 
+					
+				"Lr7_R1": [{"neurons":  64,"kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"} ], 
+					
+				"Lr8_R0": [{"neurons":  64,"kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"}, 
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [2,1], "activation": "selu", "initializer": "lecun_normal"} ], 
+					
+				"Lr8_R1": [{"neurons":  64,"kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					  {"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"} ], 
+					
+				"Lr21": [{"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					{"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					{"neurons":  64, "kernel": [1,1], "activation": "selu", "initializer": "lecun_normal"} ], 
+					
+				"Lr22": [{"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					{"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					{"neurons":  64, "kernel": [1,1], "activation": "selu", "initializer": "lecun_normal"} ], 
+					
+				"Lr23": [{"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					{"neurons":  64, "kernel": [3,3], "activation": "selu", "initializer": "lecun_normal"},
+					{"neurons":  64, "kernel": [1,1], "activation": "selu", "initializer": "lecun_normal"} ] 
+		},
+		
+		"Pool_layers" : {"Lr0": [{"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 1]} ],
+			
+				"Lr1": [{"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 2]} ],
+					 
+				"Lr2": [{"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 2]} ],
+					 
+				"Lr3": [{"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 1]} ],
+					
+				"Lr4": [{"kernel": [2, 1]}, {"kernel": [2, 1]}, {"kernel": [2, 1]}, {"kernel": [2, 1]} ],
+					
+				"Lr5": [{"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 1]} ],
+					
+				"Lr6_R0": [{"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 2]} ],
+					
+				"Lr6_R1": [{"kernel": [2, 1]}, {"kernel": [2, 1]}, {"kernel": [2, 1]} ],
+					
+				"Lr7_R0": [{"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 1]}, {"kernel": [2, 1]} ],
+					
+				"Lr7_R1": [{"kernel": [2, 1]}, {"kernel": [2, 1]}, {"kernel": [2, 1]} ],
+					
+				"Lr8_R0": [{"kernel": [2, 2]}, {"kernel": [2, 2]}, {"kernel": [2, 1]}, {"kernel": [2, 1]} ],
+					
+				"Lr8_R1": [{"kernel": [2, 1]}, {"kernel": [2, 1]}, {"kernel": [2, 1]} ],
+					
+				"Lr21": [{"kernel": [2,2]}, {"kernel": [2, 2]}, {"kernel": [1, 1]} ],
+					
+				"Lr22": [{"kernel": [2,2]}, {"kernel": [2, 2]}, {"kernel": [1, 1]} ],
+					
+				"Lr23": [{"kernel": [2,1]}, {"kernel": [2, 1]}, {"kernel": [1, 1]} ]
+		}, 
+		
+		"Dense_layers" : [
+				{"type": "Dense", "neurons":  64, "activation": "selu", "initializer": "lecun_normal"},
+				{"type": "Dropout", "rate": 0.05}, 
+				{"type": "Dense", "neurons":  64, "activation": "selu", "initializer": "lecun_normal"},
+				{"type": "Dense", "neurons": 64, "activation": "selu", "initializer": "lecun_normal"},
+				{"type": "Dropout", "rate": 0.05},
+				{"type": "Dense", "neurons": 16, "activation": "selu", "initializer": "lecun_normal"}
+		]
+	}
+}

@@ -1,0 +1,26 @@
+{
+
+
+	"profile": {
+	
+		"prof1": {"vars": ["truth_met", "predicted_met"], "bins": 50, "range": [0, 400], "density": false, "Refunit": "MeV", "Varunit": "MeV", "ref": "Truth_MET_NonMuons_et", "type": "step", "xlabel": "Truth MET [GeV]", "ylabel": "MET", "name": "mean_truth_predicted", "cutName": "HLT", "truth_cut": 0, "truth_var": "Truth_MET_NonMuons_et", "mode": "mean"}
+	},
+
+	"hist" : {
+		"Truth_MET_NonMuons_et": {"type": "step", "bins": 100, "range": [0, 400], "density": true, "unit": "MeV", "xlabel": "Truth MET [NoMuon] [GeV]", "ylabel": "Fraction of Events"},
+		"predicted_met" : {"type": "step", "bins": 100, "range": [0, 400], "density": true, "unit": "MeV", "xlabel": "Prediction", "ylabel": "Fraction of Events"},
+		"truth_met" : {"type": "step", "bins": 100, "range": [0, 400], "density": true, "unit": "MeV", "xlabel": "Target", "ylabel": "Fraction of Events"}
+	},
+	
+	"stacks" : {
+	
+		"stack1" : {"vars": ["predicted_met", "truth_met"], "type": "step", "bins": 100, "range": [0, 400], "density": true, "unit": "MeV", "xlabel": "MET [GeV]", "ylabel": "Fraction of Events", "name": "MET_predcited_truth"}
+	
+	},
+	
+	"resolution": {
+	
+		"reso1": {"vars": ["scell_et", "cell_et", "predicted_met", "mht_et", "topocl_PUC_et"], "type": "step", "bins": 100, "range": [-4, 4], "density": true, "xlabel": "HLT-Truth/Truth", "ylabel": "Fraction of Events", "name": "MET_scell_cell_NN_mht_topo", "ref": "Truth_MET_NonMuons_et"}
+		
+	}
+}

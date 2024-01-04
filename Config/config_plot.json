@@ -1,0 +1,31 @@
+{
+
+
+	"profile": {
+	
+		"prof1": {"vars": ["scell_et", "truth_met"], "bins": 100, "range": [0, 400], "density": false, "Refunit": "MeV", "Varunit": "MeV", "ref": "Truth_MET_NonMuons_et", "type": "step", "xlabel": "Truth MET [GeV]", "ylabel": "MET", "name": "MET_mean_scell_truth", "cutName": "HLT", "truth_cut": 0, "truth_var": "Truth_MET_NonMuons_et", "mode": "mean"},
+		
+		"prof2": {"vars": ["cell_et", "truth_met"], "bins": 100, "range": [0, 400], "density": false, "Refunit": "MeV", "Varunit": "MeV", "ref": "Truth_MET_NonMuons_et", "type": "step", "xlabel": "Truth MET [GeV]", "ylabel": "MET", "name": "MET_mean_cell_truth", "cutName": "HLT", "truth_cut": 0, "truth_var": "Truth_MET_NonMuons_et", "mode": "mean"}
+		
+	},
+
+	"stacks" : {
+	
+		"stack1" : {"vars": ["scell_et", "cell_et", "truth_met"], "type": "step", "bins": 100, "range": [0, 400], "density": true, "unit": "MeV", "xlabel": "MET [GeV]", "ylabel": "Fraction of Events", "name": "MET_scell_cell_truth"},
+		
+		"stack2" : {"vars": ["scell_et", "cell_et", "predicted_met", "truth_met"], "type": "step", "bins": 100, "range": [0, 400], "density": true, "unit": "MeV", "xlabel": "MET [GeV]", "ylabel": "Fraction of Events", "name": "MET_scell_cell_predicted_truth"}
+	
+	},
+	
+	"resolution": {
+	
+		"reso1": {"vars": ["scell_et", "cell_et", "predicted_met"], "type": "step", "bins": 100, "range": [-2, 2], "density": true, "xlabel": "HLT-Truth/Truth", "ylabel": "Fraction of Events", "name": "MET_scell_cell_predcited", "ref": "Truth_MET_NonMuons_et"}
+		
+	},
+	
+	"effsrate": {
+	
+		"effrate1": {"vars": ["cellAlgo", "NNAlgo", "scellAlgo"], "bins": 50, "range": [0, 400], "density": false, "Varunit": "MeV", "type": "step", "xlabel": "MET [GeV]", "ylabel": "Efficiency ", "name": "cell_nn_scell", "truth_cut": 0, "truth_var": "truth_met"}
+	
+	}
+}
